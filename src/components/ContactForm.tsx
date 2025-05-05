@@ -5,6 +5,7 @@ import {
   useAnimateChildrenOnScroll,
 } from "../hooks/useAnimateOnScroll";
 import { useLanguage } from "../contexts/LanguageContext";
+import emailjs from "@emailjs/browser";
 
 interface FormInputs {
   fullName: string;
@@ -34,28 +35,43 @@ const ContactForm: React.FC = () => {
     "appear"
   );
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log(data);
-    // Extract file if it exists
-    const file = data.file?.[0];
-    if (file) {
-      console.log("File:", file.name, file.type, file.size);
-    }
-    // Here you would typically send the form data to your backend or email service
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    const formElement = formRef.current;
+    if (!formElement) return;
 
-    // Adding animation for success message
-    const formContainer = document.querySelector(".form-container");
-    if (formContainer) {
-      formContainer.innerHTML = `
-        <div class="success-message scale-in appear">
-          <div class="success-icon">✓</div>
-          <h3>${translations.contact.successTitle}</h3>
-          <p>${translations.contact.successMessage}</p>
-        </div>
-      `;
-    }
+    try {
+      const result = await emailjs.sendForm(
+        "your_service_id", 
+        "your_template_id",
+        formElement,
+        "your_public_key"
+      );
 
-    reset();
+      console.log("Email sent:", result.text);
+
+      // Optional: log uploaded file
+      const file = data.file?.[0];
+      if (file) {
+        console.log("File:", file.name, file.type, file.size);
+      }
+
+      // Show success message
+      const formContainer = document.querySelector(".form-container");
+      if (formContainer) {
+        formContainer.innerHTML = `
+          <div class="success-message scale-in appear">
+            <div class="success-icon">✓</div>
+            <h3>${translations.contact.successTitle}</h3>
+            <p>${translations.contact.successMessage}</p>
+          </div>
+        `;
+      }
+
+      reset();
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      alert("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -79,6 +95,7 @@ const ContactForm: React.FC = () => {
                 {...register("fullName", {
                   required: `${translations.contact.fullName} ${translations.contact.required}`,
                 })}
+                name="fullName" // IMPORTANT for EmailJS
               />
               {errors.fullName && (
                 <span className="error-message">{errors.fullName.message}</span>
@@ -100,6 +117,7 @@ const ContactForm: React.FC = () => {
                     message: translations.contact.invalidEmail,
                   },
                 })}
+                name="email"
               />
               {errors.email && (
                 <span className="error-message">{errors.email.message}</span>
@@ -113,6 +131,7 @@ const ContactForm: React.FC = () => {
                 type="tel"
                 className="form-input hover-glow"
                 {...register("phone")}
+                name="phone"
               />
             </div>
 
@@ -127,6 +146,7 @@ const ContactForm: React.FC = () => {
                 {...register("message", {
                   required: `${translations.contact.message} ${translations.contact.required}`,
                 })}
+                name="message"
               ></textarea>
               {errors.message && (
                 <span className="error-message">{errors.message.message}</span>
@@ -141,6 +161,7 @@ const ContactForm: React.FC = () => {
                 className="form-input hover-glow"
                 accept=".pdf,.csv,.docx"
                 {...register("file")}
+                name="file" // for EmailJS attachment support
               />
               <small className="file-note">
                 {translations.contact.fileTypes}

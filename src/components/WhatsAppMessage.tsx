@@ -5,7 +5,7 @@ import { useLanguage } from "../contexts/LanguageContext";
 const WhatsAppButton: React.FC = () => {
       const { translations } = useLanguage();
     
-  const phoneNumber: string = "972543036057";
+  const phoneNumber: string = "972559200681";
   const message: string = translations.contact.whatsAppMessage;
   const encodedMessage: string = encodeURIComponent(message);
   const whatsappUrl: string = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
