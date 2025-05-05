@@ -1,0 +1,51 @@
+/* Floating Button Styles */
+.floating-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  visibility: hidden;
+  z-index: 990;
+}
+
+.floating-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.floating-button:hover {
+  background-color: var(--accent-color);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+/* Add a pulsating animation */
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(30, 96, 199, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(30, 96, 199, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(30, 96, 199, 0);
+  }
+}
+
+.floating-button.visible {
+  animation: pulse-border 2s infinite;
+}

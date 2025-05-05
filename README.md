@@ -1,55 +1,62 @@
-# React + TypeScript + Vite
+# EZMark - Assignment Writing Services
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EZMark is a professional, modern, and responsive website offering assignment writing services for students. The site provides a simple and visually appealing interface optimized for mobile, tablet, and desktop users.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Design**: Mobile-first approach ensuring compatibility across all devices
+- **Modern UI**: Clean design with professional typography and color scheme
+- **Form Validation**: Client-side validation for contact form fields
+- **Smooth Scrolling**: Enhanced user experience with smooth scrolling navigation
 
-## Expanding the ESLint configuration
+## Sections
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Home**: Welcome section with prominent display of the EZMark brand
+2. **About**: Brief overview of EZMark services
+3. **Services**: Details of the specific services offered
+4. **Contact**: Form for users to leave their details and request callbacks
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Tech Stack
+
+- React with TypeScript
+- Vite for project setup and bundling
+- React Hook Form for form handling and validation
+- CSS for styling with responsive design
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Start the development server:
+   ```
+   npm run dev
+   ```
+4. Build for production:
+   ```
+   npm run build
+   ```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Header.tsx
+│   ├── About.tsx
+│   ├── Services.tsx
+│   └── ContactForm.tsx
+├── styles/
+│   └── global.css
+├── App.tsx
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Future Enhancements
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
-# EZMark
+- Integration with EmailJS for form submission to email
+- Additional animations and transitions
+- Testimonials section
+- Sample work portfolio

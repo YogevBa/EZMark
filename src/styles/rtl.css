@@ -1,0 +1,110 @@
+/* RTL Specific Styles */
+[dir="rtl"] {
+  /* General text alignment */
+  text-align: right;
+}
+
+/* Navigation RTL styles */
+[dir="rtl"] .nav-links li {
+  margin-left: 0;
+  margin-right: 30px;
+}
+
+[dir="rtl"] .nav-links button::after {
+  left: auto;
+  right: 0;
+}
+
+/* Service cards RTL styles */
+[dir="rtl"] .service-card {
+  text-align: right;
+}
+
+/* Form fields RTL styles */
+[dir="rtl"] label {
+  text-align: right;
+}
+
+[dir="rtl"] .error-message {
+  text-align: right;
+}
+
+/* About content RTL styles */
+[dir="rtl"] .about-content {
+  text-align: right;
+}
+
+/* Section title RTL styles */
+[dir="rtl"] .section-title {
+  text-align: right;
+}
+
+/* Removed to match removal in global.css
+[dir="rtl"] .section-title::after {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+*/
+
+/* Floating button RTL positioning */
+[dir="rtl"] .floating-button {
+  right: auto;
+  left: 30px;
+}
+
+/* Animation direction changes for RTL */
+[dir="rtl"] .slide-in-left {
+  transform: translateX(50px);
+}
+
+[dir="rtl"] .slide-in-left.appear {
+  transform: translateX(0);
+}
+
+[dir="rtl"] .slide-in-right {
+  transform: translateX(-50px);
+}
+
+[dir="rtl"] .slide-in-right.appear {
+  transform: translateX(0);
+}
+
+/* Fix title alignment in RTL */
+[dir="rtl"] .section-title {
+  text-align: center;
+}
+
+/* Font adjustments for Hebrew */
+[dir="rtl"] body {
+  font-family: 'Heebo', 'Assistant', 'Open Sans', sans-serif;
+}
+
+/* Mobile menu RTL adjustments */
+[dir="rtl"] .mobile-menu-button {
+  right: auto;
+  left: 20px;
+}
+
+[dir="rtl"] .mobile-nav {
+  right: auto;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .mobile-nav.open {
+  transform: translateX(0);
+}
+
+/* Progress bar direction */
+[dir="rtl"] .scroll-progress-bar {
+  right: 0;
+  left: auto;
+}
+
+/* Special case for certain elements that should remain centered */
+[dir="rtl"] .header-content,
+[dir="rtl"] .success-message,
+[dir="rtl"] .success-icon {
+  text-align: center;
+}
