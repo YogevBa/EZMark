@@ -49,9 +49,9 @@ const Services: React.FC = () => {
               className={`service-card scale-in hover-lift stagger-delay-${index + 1}`} 
               key={service.id}
             >
-              <div className="service-icon floating">{service.icon}</div>
+              <div className="service-icon">{service.icon}</div>
               <h3 className="service-title">{translations.services[service.titleKey].title}</h3>
-              <p className="service-description">{translations.services[service.titleKey].description}</p>
+              <div className="service-description">{translations.services[service.titleKey].description}</div>
             </div>
           ))}
         </div>

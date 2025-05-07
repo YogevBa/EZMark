@@ -1,0 +1,104 @@
+/* WhatsApp Button Styles */
+.whatsapp-button {
+  position: fixed;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #25D366;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  visibility: hidden;
+}
+
+.whatsapp-button.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  animation: pulse-whatsapp 2s infinite;
+}
+
+.whatsapp-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-text {
+  font-weight: 600;
+}
+
+/* Add a pulsating animation with WhatsApp green */
+@keyframes pulse-whatsapp {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+/* Position classes for language-specific positioning */
+.button-right {
+  left: auto !important;
+  right: 20px !important;
+}
+
+.button-left {
+  right: auto !important;
+  left: 20px !important;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .whatsapp-button {
+    padding: 0;
+    font-size: 14px;
+    bottom: 20px;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    visibility: visible;
+    z-index: 9999;
+  }
+  
+  .whatsapp-button.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+  }
+  
+  .whatsapp-text {
+    display: none;
+  }
+  
+  /* Ensure buttons are in the corners */
+  .button-left {
+    left: 15px !important;
+  }
+  
+  .button-right {
+    right: 15px !important;
+  }
+  
+  /* Make WhatsApp icon bigger in mobile */
+  .whatsapp-button svg {
+    width: 30px;
+    height: 30px;
+  }
+}

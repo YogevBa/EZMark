@@ -41,21 +41,19 @@ const ContactForm: React.FC = () => {
 
     try {
       const result = await emailjs.sendForm(
-        "your_service_id", 
-        "your_template_id",
+        "service_1r0v0jq", // ✅ Your actual service ID
+        "template_q0bqfkh", // ✅ Your template ID
         formElement,
-        "your_public_key"
+        "e0sU5MPVVIWfJVa-o" // ✅ Your public key
       );
 
       console.log("Email sent:", result.text);
 
-      // Optional: log uploaded file
       const file = data.file?.[0];
       if (file) {
         console.log("File:", file.name, file.type, file.size);
       }
 
-      // Show success message
       const formContainer = document.querySelector(".form-container");
       if (formContainer) {
         formContainer.innerHTML = `
@@ -77,10 +75,15 @@ const ContactForm: React.FC = () => {
   return (
     <section className="contact-section" id="contact">
       <div className="container">
-        <h2 ref={titleRef} className="section-title slide-in-left">
+        {/* <h2 ref={titleRef} className="section-title slide-in-left">
           {translations.contact.title}
-        </h2>
+        </h2> */}
+
         <div className="form-container">
+          <h2 ref={titleRef} className="section-title slide-in-left">
+            {translations.contact.subTitle}
+          </h2>
+          <p style={{marginBottom:'35px'}} >{translations.contact.subTitleContent}</p>
           <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group fade-in">
               <label htmlFor="fullName">

@@ -11,6 +11,7 @@ import './styles/animations.css';
 import './styles/navigation.css';
 import './styles/floatingButton.css';
 import './styles/languageSwitcher.css';
+import './styles/whatsAppButton.css';
 import './styles/rtl.css';
 import { useScrollProgress } from './hooks/useAnimateOnScroll';
 import WhatsAppButton from './components/WhatsAppMessage';

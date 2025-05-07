@@ -71,29 +71,33 @@ const Navigation: React.FC<NavigationProps> = ({ scrollToContact }) => {
           </div>
         </div>
         
-        {/* Mobile Menu Button */}
-        <button 
-          className={`mobile-menu-button ${mobileMenuOpen ? 'open' : ''}`}
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        {/* Mobile Menu Button - Only shown when menu is closed */}
+        {!mobileMenuOpen && (
+          <button 
+            className="mobile-menu-button"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        )}
       </div>
       
       {/* Mobile Navigation */}
       <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
+        {/* Close Button */}
+        <button
+          className="mobile-close-button"
+          onClick={toggleMobileMenu}
+          aria-label="Close menu"
+        >
+          <span></span>
+          <span></span>
+        </button>
+        
         <div className="mobile-nav-content">
-          <button 
-            className="mobile-close-button"
-            onClick={toggleMobileMenu}
-            aria-label="Close menu"
-          >
-            <span></span>
-            <span></span>
-          </button>
           <div className="mobile-nav-header">
             <div className="mobile-nav-logo">EZMark</div>
           </div>

@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import backgroundImage from '../assets/background.png';
 
 interface HeaderProps {
   scrollToContact: () => void;

@@ -19,7 +19,6 @@
 [dir="rtl"] .service-card {
   text-align: right;
 }
-
 /* Form fields RTL styles */
 [dir="rtl"] label {
   text-align: right;
@@ -34,18 +33,11 @@
   text-align: right;
 }
 
+
 /* Section title RTL styles */
 [dir="rtl"] .section-title {
   text-align: right;
 }
-
-/* Removed to match removal in global.css
-[dir="rtl"] .section-title::after {
-  left: auto;
-  right: 0;
-  transform: none;
-}
-*/
 
 /* Floating button RTL positioning */
 [dir="rtl"] .floating-button {
