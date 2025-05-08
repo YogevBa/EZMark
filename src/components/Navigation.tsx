@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
-import LanguageSwitcher from './LanguageSwitcher';
+import React, { useState, useEffect } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 interface NavigationProps {
   scrollToContact: () => void;
@@ -21,9 +21,9 @@ const Navigation: React.FC<NavigationProps> = ({ scrollToContact }) => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -31,10 +31,16 @@ const Navigation: React.FC<NavigationProps> = ({ scrollToContact }) => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
       // Close mobile menu if open
       setMobileMenuOpen(false);
     }
+  };
+
+  const handleScrollToContact = () => {
+    scrollToContact();
+    // Close mobile menu if open
+    setMobileMenuOpen(false);
   };
 
   // Toggle mobile menu
@@ -43,37 +49,41 @@ const Navigation: React.FC<NavigationProps> = ({ scrollToContact }) => {
   };
 
   return (
-    <nav className={`main-navigation ${isScrolled ? 'scrolled' : ''}`}>
+    <nav className={`main-navigation ${isScrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
         <div className="nav-logo fade-in appear">EZMark</div>
-        
+
         {/* Desktop Navigation */}
         <div className="nav-right">
           <ul className="nav-links">
             <li className="fade-in appear">
-              <button onClick={() => scrollToSection('about')}>{translations.navigation.about}</button>
+              <button onClick={() => scrollToSection("about")}>
+                {translations.navigation.about}
+              </button>
             </li>
             <li className="fade-in appear stagger-delay-1">
-              <button onClick={() => scrollToSection('services')}>{translations.navigation.services}</button>
+              <button onClick={() => scrollToSection("services")}>
+                {translations.navigation.services}
+              </button>
             </li>
             <li className="fade-in appear stagger-delay-2">
-              <button 
-                onClick={scrollToContact} 
+              <button
+                onClick={() => scrollToContact()}
                 className="nav-contact-button hover-lift"
               >
                 {translations.navigation.contact}
               </button>
             </li>
           </ul>
-          
+
           <div className="desktop-language-switcher">
             <LanguageSwitcher />
           </div>
         </div>
-        
+
         {/* Mobile Menu Button - Only shown when menu is closed */}
         {!mobileMenuOpen && (
-          <button 
+          <button
             className="mobile-menu-button"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
@@ -84,9 +94,9 @@ const Navigation: React.FC<NavigationProps> = ({ scrollToContact }) => {
           </button>
         )}
       </div>
-      
+
       {/* Mobile Navigation */}
-      <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
+      <div className={`mobile-nav ${mobileMenuOpen ? "open" : ""}`}>
         {/* Close Button */}
         <button
           className="mobile-close-button"
@@ -96,20 +106,26 @@ const Navigation: React.FC<NavigationProps> = ({ scrollToContact }) => {
           <span></span>
           <span></span>
         </button>
-        
+
         <div className="mobile-nav-content">
           <div className="mobile-nav-header">
             <div className="mobile-nav-logo">EZMark</div>
           </div>
           <ul className="mobile-nav-links">
             <li>
-              <button onClick={() => scrollToSection('about')}>{translations.navigation.about}</button>
+              <button onClick={() => scrollToSection("about")}>
+                {translations.navigation.about}
+              </button>
             </li>
             <li>
-              <button onClick={() => scrollToSection('services')}>{translations.navigation.services}</button>
+              <button onClick={() => scrollToSection("services")}>
+                {translations.navigation.services}
+              </button>
             </li>
             <li>
-              <button onClick={scrollToContact}>{translations.navigation.contact}</button>
+              <button onClick={handleScrollToContact}>
+                {translations.navigation.contact}
+              </button>
             </li>
             <li className="mobile-language-switch">
               <LanguageSwitcher />
