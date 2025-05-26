@@ -19,7 +19,7 @@ export const enTranslations = {
       'Timely delivery - with a dedicated team of writers, we ensure to meet your deadlines!',
       'Personal and discreet service - everything stays between us, always!'
     ],
-    contentSummaries:'So whether you need help with a small seminar or a monstrous final project , , , we are here to break down the task, reassemble it brilliantly, and give you the tools to succeed big time.',
+    contentSummaries:'So whether you need help with a small seminar or a monstrous final project, we are here to break down the task, reassemble it brilliantly, and give you the tools to succeed big time.',
     contentCloser:'So, talk to us – your academic success starts here!',
   },
   services: {
