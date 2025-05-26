@@ -13,7 +13,12 @@ export const enTranslations = {
     title: 'About EZMark',
     content: 'At EZMark, we provide high-quality academic writing services tailored to your needs. Our team of experienced writers specializes in various disciplines, ensuring professional assistance for your assignments, essays, and research papers. We\'re dedicated to helping students achieve academic success through our reliable, timely, and customized writing solutions.',
     contentSubTitle:'Why Choose Us?',
-    contentBullets:['WOW Service: We are available for you almost 24/7 (well, almost 😉), with a personal touch that speaks your language and fits exactly what you need. No more feeling like "just another client" – you are our VIP, and we are here to pamper you with a smooth process and peace of mind.','Professionalism of Champions: Our writers are not just nerds (okay, maybe a little, but in a good way!), they are true experts with access to databases you only dream of and fresh knowledge from the field. We live and breathe research, write at a level that will leave your professors speechless , , and ensure 100% originality and creativity .','Speed of Light (Almost!): Tight deadline? No problem! With a crazy team of writers covering every field you can imagine – from Bible studies and archaeology to statistical analyses and valuations for tech companies – we deliver quality work in record time , . Less stress, more time to live life (or at least sleep properly).'],
+    contentBullets: [
+      'Full availability - almost 24/7',
+      'Top-notch writing quality - our writers are carefully selected graduates with academic degrees.',
+      'Timely delivery - with a dedicated team of writers, we ensure to meet your deadlines!',
+      'Personal and discreet service - everything stays between us, always!'
+    ],
     contentSummaries:'So whether you need help with a small seminar or a monstrous final project , , , we are here to break down the task, reassemble it brilliantly, and give you the tools to succeed big time.',
     contentCloser:'So, talk to us – your academic success starts here!',
   },
@@ -38,8 +43,8 @@ export const enTranslations = {
   },
   contact: {
     title: 'Leave Your Details',
-    subTitle: 'Ready to skyrocket your grades? Let\'s talk!',
-    subTitleContent: 'Fill in the details below, and our team of experts will get back to you quickly with a personalized offer that will propel you forward. No commitment, with plenty of potential for success! 😉',
+    subTitle: 'So how do we proceed from here and how do we upgrade your degree? It\'s very simple!',
+    subTitleContent: 'Fill in your details, we will contact you within two hours, have a quick chat to understand your needs, and our team of writers will get to work!',
     fullName: 'Full Name (So we know who to send the A+ to 😉)',
     email: 'Email Address (So we can send you all this goodness)',
     phone: 'Phone Number (For a quick and targeted chat)',

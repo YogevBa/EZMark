@@ -18,28 +18,32 @@ const About: React.FC = () => {
         </h2>
         <div ref={contentRef} className="about-content fade-in">
           <p>{translations.about.content}</p>
-          <p style={{fontWeight:'bold', display:'flex', justifyContent:'center'}}>{translations.about.contentSubTitle}</p>
-          <div ref={contentRef}>
-            {translations.about.contentBullets.map(
-              (bullet: string, index: number) => (
-                <li 
-                  style={{
-                    listStyle: 'none',
-                    textAlign: language === 'en' ? 'left' : 'right'
-                  }} 
-                  key={index} 
-                  className="about-bullet"
-                >
-                  {bullet}
-                </li>
-              )
-            )}
 
-            <p style={{ textAlign: language === 'en' ? 'left' : 'right' }}>{translations.about.contentSummaries}</p>
-            <p style={{display:'flex', justifyContent:'center'}}>
-              <strong>{translations.about.contentCloser}</strong>
-            </p>
-          </div>
+          <h2 style={{ fontWeight: 'bold', display: 'flex', justifyContent: 'center' }}>
+            {translations.about.contentSubTitle}
+          </h2>
+
+          <ul
+            style={{
+              paddingInlineStart: '20px',
+              textAlign: language === 'en' ? 'left' : 'right',
+              direction: language === 'en' ? 'ltr' : 'rtl'
+            }}
+          >
+            {translations.about.contentBullets.map((bullet: string, index: number) => (
+              <li key={index} className="about-bullet">
+                {bullet}
+              </li>
+            ))}
+          </ul>
+
+          <p style={{ textAlign: language === 'en' ? 'left' : 'right' }}>
+            {translations.about.contentSummaries}
+          </p>
+
+          <p style={{ display: 'flex', justifyContent: 'center' }}>
+            <strong>{translations.about.contentCloser}</strong>
+          </p>
         </div>
       </div>
     </section>
