@@ -97,6 +97,12 @@
 /* Special case for certain elements that should remain centered */
 [dir="rtl"] .header-content,
 [dir="rtl"] .success-message,
-[dir="rtl"] .success-icon {
+[dir="rtl"] .success-icon,
+[dir="rtl"] .footer {
+  text-align: center;
+}
+
+/* Footer RTL styles */
+[dir="rtl"] .company-info {
   text-align: center;
 }

@@ -5,6 +5,7 @@ import About from './components/About';
 import Services from './components/Services';
 import ContactForm from './components/ContactForm';
 import FloatingButton from './components/FloatingButton';
+import Footer from './components/Footer';
 import { LanguageProvider } from './contexts/LanguageContext';
 import './styles/global.css';
 import './styles/animations.css';
@@ -73,6 +74,7 @@ function AppContent() {
       <div ref={contactRef}>
         <ContactForm />
       </div>
+      <Footer />
       <FloatingButton scrollToTop={scrollToTop} />
     </div>
   );

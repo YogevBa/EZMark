@@ -399,6 +399,67 @@ label {
   }
 }
 
+/* Footer Styles */
+.footer {
+  background-color: var(--text-color);
+  color: var(--white);
+  padding: 20px 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  position: relative;
+  z-index: 10;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.company-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  align-items: center;
+  justify-content: center;
+}
+
+.company-info span {
+  display: block;
+  line-height: 1.4;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 767px) {
+  .footer {
+    padding: 25px 0;
+  }
+  
+  .company-info {
+    gap: 12px;
+    font-size: 0.95rem;
+  }
+  
+  .company-info span {
+    padding: 0 10px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .company-info {
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+  }
+  
+  .company-info span {
+    white-space: nowrap;
+  }
+}
+
 /* High-resolution screens */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
        only screen and (min-resolution: 192dpi) {
