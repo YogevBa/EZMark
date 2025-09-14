@@ -6,6 +6,7 @@ import {
 } from "../hooks/useAnimateOnScroll";
 import { useLanguage } from "../contexts/LanguageContext";
 import emailjs from "@emailjs/browser";
+import { triggerBucketConversion } from "../lib/bucket"; // ⬅️ חדש: דיווח המרה ל-Bucket
 
 interface FormInputs {
   fullName: string;
@@ -39,16 +40,36 @@ const ContactForm: React.FC = () => {
     const formElement = formRef.current;
     if (!formElement) return;
 
+    // מזהה ליד ייחודי (טוב לדופליקציה ולרפרנס פנימי)
+    const orderId = `LEAD-${Date.now()}`;
+
     try {
+      // 1) שליחת המייל דרך EmailJS
       const result = await emailjs.sendForm(
-        "service_1r0v0jq", // ✅ Your actual service ID
-        "template_q0bqfkh", // ✅ Your template ID
+        "service_1r0v0jq", // ✅ service ID
+        "template_q0bqfkh", // ✅ template ID
         formElement,
-        "e0sU5MPVVIWfJVa-o" // ✅ Your public key
+        "e0sU5MPVVIWfJVa-o" // ✅ public key
       );
 
       console.log("Email sent:", result.text);
 
+      // 2) דיווח ההמרה ל-Bucket (לא חוסם את ה-UI אם נכשל)
+      try {
+        await triggerBucketConversion({
+          order_id: orderId,          // מומלץ תמיד כדי למנוע כפילויות
+          email: data.email,          // אופציונלי
+          adv1: data.fullName,        // שדות חופשיים (אופציונלי)
+          adv2: data.phone || "",
+          adv3: (data.message || "").slice(0, 200),
+          // amount: 99.99,            // אם בעתיד זו רכישה בעמלת אחוזים – הוסף סכום
+        });
+        console.log("Bucket conversion reported");
+      } catch (e) {
+        console.warn("Bucket conversion not sent:", e);
+      }
+
+      // 3) UI הצלחה
       const file = data.file?.[0];
       if (file) {
         console.log("File:", file.name, file.type, file.size);
@@ -75,15 +96,13 @@ const ContactForm: React.FC = () => {
   return (
     <section className="contact-section" id="contact">
       <div className="container">
-        {/* <h2 ref={titleRef} className="section-title slide-in-left">
-          {translations.contact.title}
-        </h2> */}
-
         <div className="form-container">
           <h2 ref={titleRef} className="section-title slide-in-left">
             {translations.contact.subTitle}
           </h2>
-          <p style={{marginBottom:'35px'}} >{translations.contact.subTitleContent}</p>
+          <p style={{ marginBottom: "35px" }}>
+            {translations.contact.subTitleContent}
+          </p>
           <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group fade-in">
               <label htmlFor="fullName">
@@ -92,9 +111,7 @@ const ContactForm: React.FC = () => {
               <input
                 id="fullName"
                 type="text"
-                className={`form-input ${
-                  errors.fullName ? "error" : ""
-                } hover-glow`}
+                className={`form-input ${errors.fullName ? "error" : ""} hover-glow`}
                 {...register("fullName", {
                   required: `${translations.contact.fullName} ${translations.contact.required}`,
                 })}
@@ -110,9 +127,7 @@ const ContactForm: React.FC = () => {
               <input
                 id="email"
                 type="email"
-                className={`form-input ${
-                  errors.email ? "error" : ""
-                } hover-glow`}
+                className={`form-input ${errors.email ? "error" : ""} hover-glow`}
                 {...register("email", {
                   required: `${translations.contact.email} ${translations.contact.required}`,
                   pattern: {
@@ -142,9 +157,7 @@ const ContactForm: React.FC = () => {
               <label htmlFor="message">{translations.contact.message} *</label>
               <textarea
                 id="message"
-                className={`form-textarea ${
-                  errors.message ? "error" : ""
-                } hover-glow`}
+                className={`form-textarea ${errors.message ? "error" : ""} hover-glow`}
                 rows={5}
                 {...register("message", {
                   required: `${translations.contact.message} ${translations.contact.required}`,
