@@ -1,7 +1,8 @@
 // api/bucket/conversion.ts
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const NID = process.env.BUCKET_NID ?? '1104';
+const NID       = process.env.BUCKET_NID ?? '1104';
+const EVENT_ID  = process.env.BUCKET_EVENT_ID; // ← הגדר בפרוד: 889
 
 // דה-דופליקציה פשוטה בזמן ריצה (מומלץ להחליף ב-DB/Redis בפרודקשן)
 const seen = new Map<string, number>();
@@ -24,6 +25,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     amount, email,
     adv1, adv2, adv3, adv4, adv5,
     order_id,
+    event_id: bodyEventId, // ← חדש: מאפשר להעביר event_id גם מהקליינט (אופציונלי)
   } = (req.body ?? {}) as Record<string, unknown>;
 
   if (!transaction_id) {
@@ -38,6 +40,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const url = new URL('https://go.scrmgo.com/');
   url.searchParams.set('nid', NID);
   url.searchParams.set('transaction_id', String(transaction_id));
+
+  // ⚠️ חובה לליד: event_id=889 (או ערך אחר שתגדיר ב-ENV)
+  const effectiveEventId = bodyEventId ?? EVENT_ID;
+  if (effectiveEventId != null && String(effectiveEventId).length > 0) {
+    url.searchParams.set('event_id', String(effectiveEventId));
+  }
 
   const optionals: Record<string, unknown> = {
     amount, email, adv1, adv2, adv3, adv4, adv5, order_id,
@@ -58,7 +66,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(upstream.ok ? 200 : 502).json({
       ok: upstream.ok,
       status: upstream.status,
-      upstreamRaw: text,
+      upstreamRaw: text, // ניתן להסרה בפרוד אם לא צריך
     });
   } catch (e: unknown) {
     return res.status(502).json({
